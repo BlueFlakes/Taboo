@@ -1,4 +1,4 @@
-from models.events import Event
+from models.event import Event
 
 class PrivateMentoring(Event):
     events = []

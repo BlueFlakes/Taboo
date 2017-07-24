@@ -1,15 +1,19 @@
 from models.common import sort_array
+from datetime import datetime
+
 
 class Event:
     events = []
 
-    def __init__(self, date):
-        '''date: Date object
+    def __init__(self, event_topic, date):
         '''
-        self.date = date
+        Args:
+            date: Date object
+            event_topic: str
 
-    def get_date(self):
-        return self.date
+        '''
+        self.event_topic = event_topic.capitalize()
+        self.date = date
 
     @classmethod
     def sort_events(cls):
@@ -29,3 +33,7 @@ class Event:
 
     def __lt__(self, other):
         return self.date < other.date
+
+    @classmethod
+    def __str__(cls):
+        for

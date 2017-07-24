@@ -13,7 +13,7 @@ def begin_communication_with_user(person_details):
 
     user_choice = None
     title = 'Hello ' + person_details.title()
-    menu = ['Show events', 'ss']
+    menu = ['Show students', 'Show public events', 'Private mentoring']
 
     while user_choice != '0':
         view.clear_window()

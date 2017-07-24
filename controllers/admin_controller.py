@@ -15,7 +15,8 @@ def begin_communication_with_user(person_details):
 
     user_choice = None
     title = 'Hello ' + person_details.title()
-    menu = ['Show mentors', 'Show students', 'Generate code for mentor', 'Generate code for student']
+    menu = ['Show mentors', 'Show students', 'Show public events', 'Manage public events',
+            'Generate code for mentor', 'Generate code for student']
 
     while user_choice != '0':
         view.clear_window()
@@ -36,11 +37,17 @@ def switch_between_menu_options(user_choice):
 
     elif user_choice == '2':
         common.print_students_data()
-
+        
     elif user_choice == '3':
-        common.generate_mentor_code()
+        pass
 
     elif user_choice == '4':
+        pass
+
+    elif user_choice == '5':
+        common.generate_mentor_code()
+
+    elif user_choice == '6':
         common.generate_student_code()
 
     elif user_choice == '0':

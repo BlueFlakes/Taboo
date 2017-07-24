@@ -101,3 +101,11 @@ def generate_student_code():
     view.print_result('Succesfully created a new student code: ' + prefix + postfix)
     view.print_result('Code will expire in the next day!')
     view.state_locker()
+
+
+def sort_array(array):
+
+    for i in range(len(array)):
+        for j in range(i, len(array)):
+            if array[i] < array[j]:
+                array[i], array[j] = array[j], array[i]

@@ -8,22 +8,37 @@ class Student(Person):
 
     @classmethod
     def add_student(cls, personal_data):
+        """Add new student object to collection"""
         cls.students.append(Student(*personal_data))
 
     @classmethod
     def load_students(cls):
-        cls.mentors = tools.get_data_from_file(cls._file_name, Student)
+        """Load students data from file"""
+        cls.students = tools.get_data_from_file(cls._file_name, Student)
 
     @classmethod
     def get_students(cls):
+        """Give back a collection with student objects
+
+        Return:
+            cls.students (list)
+
+        """
         return cls.students
 
     @classmethod
     def save_students_data(cls):
+        """save students to file"""
         tools.save_data_to_file(cls.students, cls._file_name, staff_members=True)
 
     @classmethod
     def prepare_students_data_to_visualize(cls):
+        """Prepare objects to format which can be interpreted
+        by a table function and visualized.
+
+        Return:
+            temp (list)
+        """
         temp = []
 
         for person in cls.students:

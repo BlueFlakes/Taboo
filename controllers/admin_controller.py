@@ -6,6 +6,13 @@ from models import common
 
 
 def start_controller(person_details):
+    """Start admin controller"""
+    begin_communication_with_user(person_details)
+
+
+def begin_communication_with_user(person_details):
+    """Get inputs from user"""
+
     user_choice = None
     title = 'Hello ' + person_details.title()
     menu = ['Show mentors', 'Show students', 'Generate code for mentor', 'Generate code for student']
@@ -18,6 +25,12 @@ def start_controller(person_details):
 
 
 def switch_between_menu_options(user_choice):
+    """Switching between available options, choice depend on user input
+
+    Args:
+        user_choice (str)
+
+    """
     if user_choice == '1':
         common.print_mentors_data()
 
@@ -34,4 +47,4 @@ def switch_between_menu_options(user_choice):
         pass
 
     else:
-        view.error_state_locker()
+        view.error_wrong_choice()

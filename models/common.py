@@ -58,6 +58,12 @@ def generate_code():
 
 
 def get_unique_code():
+    """Filter out repeatable values from code generator and waiting for unique one
+
+    Return:
+        code (str): which is unique
+    """
+
     existing_codes = RegistrationCode.get_registration_codes()
     is_code_unique = False
     code = None

@@ -54,7 +54,10 @@ def choose_data_type_for_input(array):
 
 
 def clear_window():
+    """Clear main window"""
     os.system("clear")
+
+
 
 
 def print_message(message):
@@ -65,8 +68,12 @@ def print_message(message):
     """
     print(message)
 
+def error_state_locker(message):
+    """Print provided message and lock actual state""" 
+    print_error_message('\n' + message)
+    locker()
 
-def error_state_locker():
+def error_wrong_choice():
     """Lock state of application until user press a key"""
 
     print_error_message("\nWarning: this action doesn't exist! Press any key.")
@@ -76,7 +83,7 @@ def error_state_locker():
 def state_locker():
     """Lock state of application until user press a key"""
 
-    print('\033[93m' + 'Press any key to exit this state' + '\033[0m')
+    print('\033[93m' + '\nPress any key to exit this state' + '\033[0m')
     locker()
 
 

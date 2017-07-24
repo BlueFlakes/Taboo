@@ -3,9 +3,16 @@ from controllers import registration_controller
 from views import view
 
 def start_controller():
+    """Start main controller"""
+    begin_communication_with_user()
+
+
+def begin_communication_with_user():
+    """Get inputs from user"""
+
     user_choice = None
     menu = ['Sign in', 'Register account']
-    title = 'Hello dear user'
+    title = 'Main menu'
 
     while user_choice != '0':
         view.clear_window()
@@ -16,6 +23,12 @@ def start_controller():
 
 
 def switch_between_menu_options(user_choice):
+    """Switching between available options, choice depend on user input
+
+    Args:
+        user_choice (str)
+
+    """
     if user_choice == '1':
         login_controller.start_controller()
 
@@ -26,4 +39,4 @@ def switch_between_menu_options(user_choice):
         pass
 
     else:
-        view.error_state_locker()
+        view.error_wrong_choice()

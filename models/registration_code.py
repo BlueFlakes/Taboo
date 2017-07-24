@@ -1,8 +1,11 @@
 from datetime import date
 from datetime import date, datetime
+from data import tools
+
 
 class RegistrationCode:
     registration_codes = []
+    _file_name = 'csv/registration_codes.csv'
 
     def __init__(self, code, date):
         self.code = code
@@ -46,9 +49,9 @@ class RegistrationCode:
     def refresh_available_codes(cls):
         """Delete old registration codes from the database"""
 
-        indexes = cls.get_indexes_to_delete(cls.registration_codes)
+        old_keys_indexes = cls.get_indexes_to_delete(cls.registration_codes)
 
-        for index in indexes:
+        for index in old_keys_indexes[::-1]:
             del cls.registration_codes[index]
 
     @staticmethod
@@ -71,3 +74,33 @@ class RegistrationCode:
                 temp.append(i)
 
         return temp
+
+    @classmethod
+    def load_registration_codes(cls):
+        """Load registration codes from file"""
+        cls.registration_codes = tools.get_data_from_file(cls._file_name, RegistrationCode)
+
+    @staticmethod
+    def _prepare_registration_codes_data_to_save(registration_codes):
+        """Prepare RegistrationCode objects to save
+
+        Return:
+            temp (list)
+
+        """
+        temp = []
+
+        for regr_code in registration_codes:
+            temp.append([regr_code.code, str(regr_code.date)])
+
+        return temp
+
+    @classmethod
+    def save_registration_codes(cls):
+        """save registration codes data to file"""
+        prepared_data = cls._prepare_registration_codes_data_to_save(cls.registration_codes)
+        tools.save_data_to_file(prepared_data, cls._file_name)
+
+
+
+#

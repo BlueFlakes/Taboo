@@ -2,6 +2,15 @@ import csv
 from views import view
 
 def read_file(file_name):
+    """Read data from file
+
+    Args:
+        file_name (str)
+
+    Return:
+        temp (list)
+
+    """
     temp = []
 
     with open(file_name, 'r') as csvfile:
@@ -13,6 +22,15 @@ def read_file(file_name):
     return temp
 
 def secure_data_loading(file_name):
+    """Prevent from trying load data from file which doesn't exist
+
+    Args:
+        file_name (str)
+
+    Return:
+        temp (list)
+
+    """
     temp = []
 
     try:
@@ -26,13 +44,28 @@ def secure_data_loading(file_name):
     return temp
 
 def load_data(file_name):
+    """Delegate loading file
+
+    Args:
+        file_name (str)
+
+    Return:
+        loaded_data (list)
+
+    """
     loaded_data = secure_data_loading(file_name)
 
     return loaded_data
 
 
 def save_data_to_file(file_name, data):
+    """Save data to file
 
+    Args:
+        file_name (str)
+        data (list)
+
+    """
     with open(file_name, 'w') as csvfile:
         data_writer = csv.writer(csvfile)
 

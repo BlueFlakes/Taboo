@@ -1,5 +1,5 @@
 class Person:
-    people = []
+    """Person class is abstract pattern for codecool members"""
 
     def __init__(self, login, password, name, surname, email):
         self.login = login

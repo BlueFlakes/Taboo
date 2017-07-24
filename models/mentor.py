@@ -9,22 +9,37 @@ class Mentor(Person):
 
     @classmethod
     def add_mentor(cls, personal_data):
+        """Add new mentor to collection"""
         cls.mentors.append(Mentor(*personal_data))
 
     @classmethod
     def load_mentors(cls):
+        """Load mentors from file"""
         cls.mentors = tools.get_data_from_file(cls._file_name, Mentor)
 
     @classmethod
     def get_mentors(cls):
+        """Give back a collection with mentor objects
+
+        Return:
+            cls.mentors (list)
+
+        """
         return cls.mentors
 
     @classmethod
     def save_mentors_data(cls):
+        """Save mentors data to file"""
         tools.save_data_to_file(cls.mentors, cls._file_name, staff_members=True)
 
     @classmethod
     def prepare_mentors_data_to_visualize(cls):
+        """Prepare objects to format which can be interpreted
+        by a table function and visualized.
+
+        Return:
+            temp (list)
+        """
         temp = []
 
         for person in cls.mentors:

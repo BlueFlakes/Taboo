@@ -25,6 +25,16 @@ def get_data_from_file(file_name, object_type):
 
 
 def prepare_people_data(list_of_persons):
+    """Prepare Mentor/Student and other humans data to save the same, because
+    they share common characteristics.
+
+    Args:
+        list_of_persons (list)
+
+    Return:
+        temp (list)
+
+    """
     temp = []
 
     for person in list_of_persons:
@@ -36,6 +46,14 @@ def prepare_people_data(list_of_persons):
     return temp
 
 def save_data_to_file(data, file_name, staff_members=False):
+    """Delegate saving data to file
+
+    Args:
+        data (list)
+        file_name (str)
+        staff_members (bool)
+
+    """
     if staff_members:
         data = prepare_people_data(data)
 

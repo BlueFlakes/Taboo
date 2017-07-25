@@ -36,10 +36,10 @@ def switch_between_menu_options(user_choice, person_details):
         common.show_public_events(lock_state=True)
 
     elif user_choice == '3':
-        mentor_status = person_details[-7:-1]
-        public_events_controller.start_controller(mentor_status)
+        public_events_controller.start_controller()
 
     elif user_choice == '4':
+        mentor_status = person_details[-7:-1]
         pass
 
     elif user_choice == '0':

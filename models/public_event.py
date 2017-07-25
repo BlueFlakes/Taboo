@@ -40,6 +40,12 @@ class PublicEvent(Event):
 
     @classmethod
     def prepare_events_data_to_visualize(cls):
+        """Format data in the way which let us show the data in table
+
+        Return:
+            temp (list)
+            
+        """
         temp = []
 
         for event in cls.events:

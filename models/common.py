@@ -7,6 +7,12 @@ from time import sleep
 
 
 def show_public_events(lock_state=False):
+    """Present public events to user
+
+    Args:
+        lock_state (bool)
+
+    """
     events_data = PublicEvent.prepare_events_data_to_visualize()
     titles = ['idx', 'Date', 'Title', 'Description']
 
@@ -42,12 +48,20 @@ def show_people_data(people, detailed=False):
 
 
 def display_info_about_people_amount(people):
+    """Display reaction at available people amount
+
+    Args:
+        people (list)
+
+    """
     if len(people) == 0:
         print('OOooops no records!')
         sleep(0.75)
 
 
 def manage_mentors_data_displaying():
+    """Take care of displaying mentors data in specific ways"""
+
     print_mentors_data()
     question = 'Type "yes" to see detailed mentors data, otherwise type anything'
     user_choice = view.get_inputs([question])
@@ -57,6 +71,8 @@ def manage_mentors_data_displaying():
 
 
 def manage_students_data_displaying():
+    """Take care of displaying students data in specific ways"""
+    
     print_students_data()
     question = 'Type "yes" to see detailed mentors data, otherwise type anything'
     user_choice = view.get_inputs([question])

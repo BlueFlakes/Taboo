@@ -49,6 +49,8 @@ def switch_between_menu_options(user_choice):
 
 
 def delete_choosen_event():
+    """Delete one of choosen public events"""
+
     public_events_number = PublicEvent.get_number_of_events()
     user_input = view.get_inputs(['Which record delete, please provide index'])
 
@@ -71,6 +73,8 @@ def delete_choosen_event():
 
 
 def archive_old_events():
+    """Archive out dated entries"""
+
     PublicEvent.archive_old_entries()
     view.print_result('Succesfully deleted old entries.')
     sleep(1)
@@ -78,11 +82,18 @@ def archive_old_events():
 
 
 def add_new_public_event():
+    """Add new public event"""
     event_data = get_new_public_event_data()
     PublicEvent.add_event(PublicEvent(*event_data))
 
 
 def get_new_public_event_data():
+    """Collect needed information and delegate validation to another function
+
+    Return:
+        temp (list)
+
+    """
     list_of_questions = ['Public event title', 'Public event Desctription',
                          'Date, at least more than 24 hours from current time (' +
                           str(datetime.now())[:16] + ').\nformat YYYY-MM-DD-HH-MM']
@@ -103,6 +114,15 @@ def get_new_public_event_data():
 
 
 def validate_provided_inputs(step, user_input):
+    """Check the correctness of provided inputs with expected ones
+    Args:
+        step (int): loop step
+        user_input (str)
+
+    Return:
+        valid_input (bool)
+
+    """
     user_input = user_input.strip()
     min_input_length = 3
     max_input_length = 70
@@ -125,6 +145,14 @@ def validate_provided_inputs(step, user_input):
 
 
 def validate_provided_date(date):
+    """Specific validation section for date
+
+    Args:
+        date (str)
+
+    Return:
+        valid_input (bool)
+    """
     valid_input = False
 
     try:
@@ -144,17 +172,3 @@ def validate_provided_date(date):
 
 
     return valid_input
-
-
-
-
-
-
-
-
-
-
-
-
-
-#

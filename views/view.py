@@ -69,7 +69,7 @@ def print_message(message):
     print(message)
 
 def error_state_locker(message):
-    """Print provided message and lock actual state""" 
+    """Print provided message and lock actual state"""
     print_error_message('\n' + message)
     locker()
 
@@ -133,7 +133,7 @@ def print_result(message):
     print('\033[94m' + message + '\033[0m')
 
 
-def print_table(titles, data):
+def print_table(titles, data, enumerate_table=False):
     """
 
     Args:
@@ -143,8 +143,12 @@ def print_table(titles, data):
     """
     prettytable = PrettyTable(titles, hrules=ALL)
 
-    for record in data:
-        prettytable.add_row(record)
+    for i, record in enumerate(data):
+        if enumerate_table:
+            prettytable.add_row([str(i+1)] + record)
+
+        elif not enumerate_table:
+            prettytable.add_row(record)
 
     print(prettytable)
 

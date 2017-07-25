@@ -6,16 +6,17 @@ from models.registration_code import RegistrationCode
 from time import sleep
 
 
-def show_public_events():
+def show_public_events(lock_state=False):
     events_data = PublicEvent.prepare_events_data_to_visualize()
-    titles = ['Date', 'Title', 'Description']
+    titles = ['idx', 'Date', 'Title', 'Description']
 
     view.clear_window()
-    view.print_table(titles, events_data)
+    view.print_table(titles, events_data, enumerate_table=True)
     if not PublicEvent.get_number_of_events():
         view.print_result('No records at all.')
 
-    view.state_locker()
+    if lock_state:
+        view.state_locker()
 
 
 def show_people_data(people, detailed=False):

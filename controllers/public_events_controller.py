@@ -14,11 +14,12 @@ def begin_communication_with_user():
 
     user_choice = None
     title = 'Public events manager menu'
-    menu = ['Show public events', 'Add public event', 'Delete public event',
+    menu = ['Add public event', 'Delete public event',
             'Archive out dated public events']
 
     while user_choice != '0':
         view.clear_window()
+        common.show_public_events()
         view.print_menu(title, menu)
         user_choice = view.get_inputs(['What do you want to do'])
         switch_between_menu_options(user_choice)
@@ -32,22 +33,48 @@ def switch_between_menu_options(user_choice):
 
     """
     if user_choice == '1':
-        common.show_public_events()
-
-    elif user_choice == '2':
         add_new_public_event()
 
-    elif user_choice == '3':
-        pass # delete event
+    elif user_choice == '2':
+        delete_choosen_event()
 
-    elif user_choice == '4':
-        pass # archive events
+    elif user_choice == '3':
+        archive_old_events()
 
     elif user_choice == '0':
         pass
 
     else:
         view.error_wrong_choice()
+
+
+def delete_choosen_event():
+    public_events_number = PublicEvent.get_number_of_events()
+    user_input = view.get_inputs(['Which record delete, please provide index'])
+
+    try:
+        user_input = int(user_input)
+
+    except ValueError:
+        view.print_error_message('Wrong input!')
+        sleep(0.75)
+
+    else:
+        start_index = 1
+
+        if user_input in range(start_index, public_events_number + start_index):
+            PublicEvent.delete_event(int(user_input) - start_index)
+
+        else:
+            view.print_error_message('Out of range!')
+            sleep(0.75)
+
+
+def archive_old_events():
+    PublicEvent.archive_old_entries()
+    view.print_result('Succesfully deleted old entries.')
+    sleep(1)
+
 
 
 def add_new_public_event():

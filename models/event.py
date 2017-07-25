@@ -32,6 +32,11 @@ class Event:
     def sort_events(cls):
         cls.sort_array(cls.events)
 
+
+    @classmethod
+    def delete_event(cls, idx):
+        del cls.events[idx]
+
     @staticmethod
     def sort_array(array):
 
@@ -62,10 +67,29 @@ class Event:
                 lighted_date = '\033[91m' + str(event.date)[:16] + '\033[0m'
 
             elif event.date < datetime.now():
-                lighted_date = '\033[31m' + str(event.date)[:16] + '\033[0m'
+                lighted_date = '\033[33m' + str(event.date)[:16] + '\033[0m'
 
             record = [lighted_date, event.title, event.description]
             temp.append(record)
+
+        return temp
+
+
+    @classmethod
+    def archive_old_entries(cls):
+        indexes_to_delete = cls._get_old_entries_indexes(cls.events)
+
+        for index in indexes_to_delete[::-1]:
+            del cls.events[index]
+
+
+    @staticmethod
+    def _get_old_entries_indexes(list_of_events):
+        temp = []
+
+        for i, event in enumerate(list_of_events):
+            if event.date < datetime.now():
+                temp.append(i)
 
         return temp
 

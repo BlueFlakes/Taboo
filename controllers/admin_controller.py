@@ -40,7 +40,7 @@ def switch_between_menu_options(user_choice):
         common.manage_students_data_displaying()
 
     elif user_choice == '3':
-        pass
+        common.show_public_events(lock_state=True)
 
     elif user_choice == '4':
         public_events_controller.start_controller()

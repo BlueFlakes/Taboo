@@ -1,10 +1,10 @@
 # main start module
-from controllers import registration_controller
-from models.registration_code import RegistrationCode
+from models.time_board import TimeBoard
 
 def main():
-    RegistrationCode.add_code(['ST123456', '1111-11-11'])
-    registration_controller.start_controller()
+    time_board = TimeBoard()
+    time_board.create_board()
+    print(time_board)
 
 
 if __name__ == '__main__':

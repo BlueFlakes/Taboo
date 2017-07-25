@@ -1,7 +1,7 @@
 from views import view
 from time import sleep
 from models import common
-
+from controllers import private_mentoring_controller
 
 def start_controller(person_details):
     """Starts student controller"""
@@ -19,10 +19,10 @@ def begin_communication_with_user(person_details):
         view.clear_window()
         view.print_menu(title, menu)
         user_choice = view.get_inputs(['What do you want to do'])
-        switch_between_menu_options(user_choice)
+        switch_between_menu_options(user_choice, person_details)
 
 
-def switch_between_menu_options(user_choice):
+def switch_between_menu_options(user_choice, person_details):
     """Switching between available options, choice depend on user input
 
     Args:
@@ -33,7 +33,8 @@ def switch_between_menu_options(user_choice):
         common.show_public_events(lock_state=True)
 
     elif user_choice == '2':
-        pass
+        student_status = person_details[-8:-1]
+        private_mentoring_controller.start_controller(student_status)
 
     elif user_choice == '0':
         pass

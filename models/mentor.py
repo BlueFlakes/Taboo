@@ -1,5 +1,6 @@
 from models.person import Person
 from data import tools
+from collections import OrderedDict
 
 
 class Mentor(Person):
@@ -31,6 +32,12 @@ class Mentor(Person):
     def save_mentors_data(cls):
         """Save mentors data to file"""
         tools.save_data_to_file(cls.mentors, cls._file_name, staff_members=True)
+
+    @classmethod
+    def get_mentors_alphabetically_sorted(cls):
+        return OrderedDict([[mentor.login, mentor] for mentor in cls.mentors])
+
+
 
     @classmethod
     def prepare_mentors_data_to_visualize(cls, add_details=False):

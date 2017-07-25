@@ -3,16 +3,13 @@ from datetime import datetime, timedelta
 class Event:
     events = []
 
-    def __init__(self, title, description, date):
+    def __init__(self, date):
         '''
         Args:
             date: Date object
             event_topic: str
 
         '''
-        self.title = title.title()
-        self.description = description.capitalize()
-
         date = self.get_expected_format_for_date(date)
         self.date = datetime.strptime(date, "%Y-%m-%d-%H-%M")
 
@@ -53,26 +50,6 @@ class Event:
     def add_event(cls, event):
         cls.events.append(event)
         cls.sort_events()
-
-
-
-    @classmethod
-    def prepare_events_data_to_visualize(cls):
-        temp = []
-
-        for event in cls.events:
-            lighted_date = str(event.date)[:16]
-
-            if event.date < (datetime.now() + timedelta(days=3)) and event.date > datetime.now():
-                lighted_date = '\033[91m' + str(event.date)[:16] + '\033[0m'
-
-            elif event.date < datetime.now():
-                lighted_date = '\033[33m' + str(event.date)[:16] + '\033[0m'
-
-            record = [lighted_date, event.title, event.description]
-            temp.append(record)
-
-        return temp
 
 
     @classmethod

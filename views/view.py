@@ -76,7 +76,7 @@ def error_state_locker(message):
 def error_wrong_choice():
     """Lock state of application until user press a key"""
 
-    print_error_message("\nWarning: this action doesn't exist! Press any key.")
+    print_error_message("\nWrong action! Press any key.")
     locker()
 
 
@@ -151,7 +151,6 @@ def print_table(titles, data, enumerate_table=False):
             prettytable.add_row(record)
 
     print(prettytable)
-
 
 
 def print_all_events(events):

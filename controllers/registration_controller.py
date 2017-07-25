@@ -78,8 +78,8 @@ def validate_user_personal_data(question, user_input):
 
     """
     user_input = user_input.strip()
-    min_input_length = 1
-    max_input_length = 12
+    min_input_length = 3
+    max_input_length = 20
     valid_input = True
 
     if len(user_input) >= min_input_length and len(user_input) <= max_input_length:

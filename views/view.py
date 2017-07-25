@@ -154,8 +154,6 @@ def print_table(titles, data, enumerate_table=False):
 
 
 
-
-
 def print_all_events(events):
     for event in events:
         print(event)

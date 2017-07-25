@@ -1,7 +1,7 @@
 from views import view
 from time import sleep
 from models import common
-
+from controllers import public_events_controller
 
 def start_controller(person_details):
     """Start mentor controller"""
@@ -13,7 +13,7 @@ def begin_communication_with_user(person_details):
 
     user_choice = None
     title = 'Hello ' + person_details.title()
-    menu = ['Show students', 'Show public events', 'Private mentoring']
+    menu = ['Show students', 'Show public events', 'Manage public events','Private mentoring']
 
     while user_choice != '0':
         view.clear_window()
@@ -33,9 +33,12 @@ def switch_between_menu_options(user_choice):
         common.manage_students_data_displaying()
 
     elif user_choice == '2':
-        pass
+        common.show_public_events(lock_state=True)
 
     elif user_choice == '3':
+        public_events_controller.start_controller()
+
+    elif user_choice == '4':
         pass
 
     elif user_choice == '0':

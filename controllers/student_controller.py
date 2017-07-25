@@ -13,8 +13,7 @@ def begin_communication_with_user(person_details):
 
     user_choice = None
     title = 'Hello ' + person_details.title()
-    menu = ['Show public events', 'Make an appointment on private-mentoring',
-            'Generate code for new employee']
+    menu = ['Show public events', 'Make an appointment on private-mentoring']
 
     while user_choice != '0':
         view.clear_window()
@@ -31,12 +30,9 @@ def switch_between_menu_options(user_choice):
 
     """
     if user_choice == '1':
-        common.show_public_events()
+        common.show_public_events(lock_state=True)
 
     elif user_choice == '2':
-        pass
-
-    elif user_choice == '3':
         pass
 
     elif user_choice == '0':

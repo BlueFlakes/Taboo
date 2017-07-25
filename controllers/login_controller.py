@@ -35,9 +35,9 @@ def validate_login(user_input):
     person = Codecool.find_expected_person(*user_input)
 
     if not person:
-        sleep(0.75)
+        sleep(0.5)
         view.print_error_message('Access Denied: Wrong login or password\n')
-        sleep(1.5)
+        sleep(1.25)
 
     return person
 
@@ -50,7 +50,7 @@ def run_appropriate_controller(person):
 
     """
     controller_type = person.__class__.__name__
-    sleep(1)
+    sleep(0.5)
 
     if controller_type == 'Mentor':
         person_details = person.name + ' ' + person.surname + ' (Status Mentor)'

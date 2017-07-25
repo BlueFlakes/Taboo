@@ -26,7 +26,7 @@ def show_people_data(people, detailed=False):
         people (list of objects)
 
     """
-    sleep(0.5)
+    sleep(0.25)
     view.clear_window()
 
     if detailed:

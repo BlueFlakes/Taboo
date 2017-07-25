@@ -1,8 +1,21 @@
 from views import view
 from models.student import Student
 from models.mentor import Mentor
+from models.public_event import PublicEvent
 from models.registration_code import RegistrationCode
 from time import sleep
+
+
+def show_public_events():
+    events_data = PublicEvent.prepare_events_data_to_visualize()
+    titles = ['Date', 'Title', 'Description']
+
+    view.clear_window()
+    view.print_table(titles, events_data)
+    if not PublicEvent.get_number_of_events():
+        view.print_result('No records at all.')
+
+    view.state_locker()
 
 
 def show_people_data(people, detailed=False):
@@ -63,11 +76,3 @@ def print_students_data(detailed=False):
 
     students = Student.prepare_students_data_to_visualize(detailed)
     show_people_data(students, detailed)
-
-
-def sort_array(array):
-
-    for i in range(len(array)):
-        for j in range(i, len(array)):
-            if array[i] < array[j]:
-                array[i], array[j] = array[j], array[i]

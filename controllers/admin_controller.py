@@ -4,7 +4,7 @@ from models.mentor import Mentor
 from models.student import Student
 from models import common
 from models import code_generator
-
+from controllers import public_events_controller
 
 def start_controller(person_details):
     """Start admin controller"""
@@ -43,7 +43,7 @@ def switch_between_menu_options(user_choice):
         pass
 
     elif user_choice == '4':
-        pass
+        public_events_controller.start_controller()
 
     elif user_choice == '5':
         code_generator.generate_mentor_code()

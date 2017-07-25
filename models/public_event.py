@@ -1,7 +1,35 @@
 from models.event import Event
+from data import tools
 
 class PublicEvent(Event):
     events = []
+    _file_name = 'csv/public_events.csv'
 
-    def __init__(self, event_topic, date):
-        super().__init__(event_topic, date)
+    def __init__(self, title, description, date):
+        super().__init__(title, description, date)
+
+    @classmethod
+    def load_public_events(cls):
+        """Load public events from file"""
+        cls.events = tools.get_data_from_file(cls._file_name, PublicEvent)
+
+    @staticmethod
+    def _prepare_public_events_data_to_save(existing_events):
+        """Prepare PublicEvent objects to save
+
+        Return:
+            temp (list)
+
+        """
+        temp = []
+
+        for event in existing_events:
+            temp.append([event.title, event.description, str(event.date)])
+
+        return temp
+
+    @classmethod
+    def save_public_events(cls):
+        """save public events data to file"""
+        prepared_data = cls._prepare_public_events_data_to_save(cls.events)
+        tools.save_data_to_file(prepared_data, cls._file_name)

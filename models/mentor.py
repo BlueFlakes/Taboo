@@ -33,7 +33,7 @@ class Mentor(Person):
         tools.save_data_to_file(cls.mentors, cls._file_name, staff_members=True)
 
     @classmethod
-    def prepare_mentors_data_to_visualize(cls):
+    def prepare_mentors_data_to_visualize(cls, add_details=False):
         """Prepare objects to format which can be interpreted
         by a table function and visualized.
 
@@ -43,7 +43,12 @@ class Mentor(Person):
         temp = []
 
         for person in cls.mentors:
-            record = [person.name, person.surname, person.email]
+            if add_details:
+                record = [person.login, person.password, person.name, person.surname, person.email]
+
+            elif not add_details:
+                record = [person.name, person.surname, person.email]
+
             temp.append(record)
 
         return temp

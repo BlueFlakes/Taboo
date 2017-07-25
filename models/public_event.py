@@ -1,9 +1,7 @@
 from models.event import Event
 
-class PublicEvent:
+class PublicEvent(Event):
     events = []
 
     def __init__(self, event_topic, date):
         super().__init__(event_topic, date)
-
-    

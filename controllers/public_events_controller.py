@@ -1,13 +1,9 @@
 from views import view
 from time import sleep
-from models.mentor import Mentor
-from models.student import Student
-from models import common
-from models import code_generator
-
+from models.public_event import PublicEvent
 
 def start_controller(person_details):
-    """Start admin controller"""
+    """Start mentor controller"""
     begin_communication_with_user(person_details)
 
 
@@ -16,8 +12,8 @@ def begin_communication_with_user(person_details):
 
     user_choice = None
     title = 'Hello ' + person_details.title()
-    menu = ['Show mentors', 'Show students', 'Show public events', 'Manage public events',
-            'Generate code for mentor', 'Generate code for student']
+    menu = ['Show public events', 'Add public event', 'Delete public event',
+            'Archive out dated public events']
 
     while user_choice != '0':
         view.clear_window()
@@ -34,22 +30,16 @@ def switch_between_menu_options(user_choice):
 
     """
     if user_choice == '1':
-        common.manage_mentors_data_displaying()
+        pass # Show events
 
     elif user_choice == '2':
-        common.manage_students_data_displaying()
+        pass # Add event
 
     elif user_choice == '3':
-        pass
+        pass # delete event
 
     elif user_choice == '4':
-        pass
-
-    elif user_choice == '5':
-        code_generator.generate_mentor_code()
-
-    elif user_choice == '6':
-        code_generator.generate_student_code()
+        pass # archive events
 
     elif user_choice == '0':
         pass

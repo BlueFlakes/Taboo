@@ -30,7 +30,7 @@ def switch_between_menu_options(user_choice):
 
     """
     if user_choice == '1':
-        pass
+        common.manage_students_data_displaying()
 
     elif user_choice == '2':
         pass
@@ -43,7 +43,3 @@ def switch_between_menu_options(user_choice):
 
     else:
         view.error_wrong_choice()
-
-
-def show_students():
-    common.print_students_data()

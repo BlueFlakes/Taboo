@@ -2,105 +2,67 @@ from views import view
 from models.student import Student
 from models.mentor import Mentor
 from models.registration_code import RegistrationCode
-from datetime import date, datetime
-import random
+from time import sleep
 
-def show_people_data(people):
+
+def show_people_data(people, detailed=False):
     """Present people data like name, surname and e mail in table
 
     Args:
         people (list of objects)
 
     """
+    sleep(0.5)
     view.clear_window()
-    titles = ['Name', 'Surname', 'Email']
-    view.print_table(titles, people)
+
+    if detailed:
+        titles = ['login', 'password', 'Name', 'Surname', 'Email']
+        view.print_table(titles, people)
+        display_info_about_people_amount(people)
+        view.state_locker()
+
+    elif not detailed:
+        titles = ['Name', 'Surname', 'Email']
+        view.print_table(titles, people)
+        display_info_about_people_amount(people)
+
+
+def display_info_about_people_amount(people):
     if len(people) == 0:
         print('OOooops no records!')
+        sleep(0.75)
 
-    view.state_locker()
+
+def manage_mentors_data_displaying():
+    print_mentors_data()
+    question = 'Type "yes" to see detailed mentors data, otherwise type anything'
+    user_choice = view.get_inputs([question])
+
+    if user_choice.lower() == 'yes':
+        print_mentors_data(detailed=True)
 
 
-def print_mentors_data():
+def manage_students_data_displaying():
+    print_students_data()
+    question = 'Type "yes" to see detailed mentors data, otherwise type anything'
+    user_choice = view.get_inputs([question])
+
+    if user_choice.lower() == 'yes':
+        print_students_data(detailed=True)
+
+
+def print_mentors_data(detailed=False):
     """Get prepared mentors data to visualize and move it to the next step"""
 
-    mentors = Mentor.prepare_mentors_data_to_visualize()
-    show_people_data(mentors)
+    mentors = Mentor.prepare_mentors_data_to_visualize(detailed)
+    show_people_data(mentors, detailed)
 
 
-def print_students_data():
+def print_students_data(detailed=False):
     """Get prepared students data to visualize and move it to the next step"""
 
-    students = Student.prepare_students_data_to_visualize()
-    show_people_data(students)
-
-
-def generate_code():
-    """Unique code generator for account registration
-
-    Return:
-        code (str)
-
-    """
-
-    CODE_LENGTH = 8
-    code = ''
-
-    special_signs = ['*', '/', '&', '%', '$', '#', '@']
-    digits = list(range(0, 10))
-    alpha = [chr(i) for i in range(65, 91)] + [chr(i) for i in range(97, 123)]
-    signs_sum = special_signs + digits + alpha
-
-    for i in range(CODE_LENGTH):
-        code += str(random.choice(signs_sum))
-
-    return code
-
-
-def get_unique_code():
-    """Filter out repeatable values from code generator and waiting for unique one
-
-    Return:
-        code (str): which is unique
-    """
-
-    existing_codes = RegistrationCode.get_registration_codes()
-    is_code_unique = False
-    code = None
-
-    while not is_code_unique:
-        code = generate_code()
-
-        if code not in existing_codes:
-            is_code_unique = True
-
-    return code
-
-
-
-def generate_mentor_code():
-    """generate a code for user to create account on mentor rights"""
-
-    prefix = 'MT'
-    postfix = get_unique_code()
-    code = prefix + postfix
-
-    RegistrationCode.add_code([code, str(date.today())])
-    view.print_result('Succesfully created a new mentor code: ' + prefix + postfix)
-    view.print_result('Code will expire in the next day!')
-    view.state_locker()
-
-
-def generate_student_code():
-    """generate a code for user to create account on student rights"""
-    prefix = 'ST'
-    postfix = get_unique_code()
-    code = prefix + postfix
-
-    RegistrationCode.add_code([code, str(date.today())])
-    view.print_result('Succesfully created a new student code: ' + prefix + postfix)
-    view.print_result('Code will expire in the next day!')
-    view.state_locker()
+    students = Student.prepare_students_data_to_visualize(detailed)
+    show_people_data(students, detailed)
 
 
 def sort_array(array):

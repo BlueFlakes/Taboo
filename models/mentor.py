@@ -34,8 +34,12 @@ class Mentor(Person):
         tools.save_data_to_file(cls.mentors, cls._file_name, staff_members=True)
 
     @classmethod
-    def get_mentors_alphabetically_sorted(cls):
-        return OrderedDict([[mentor.login, mentor] for mentor in cls.mentors])
+    def get_mentors_names_and_surnames(cls):
+        return [(mentor.name + ' ' + mentor.surname) for mentor in cls.mentors]
+
+    @classmethod
+    def get_number_of_mentors(cls):
+        return len(cls.mentors)
 
 
 

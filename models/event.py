@@ -11,7 +11,7 @@ class Event:
 
         '''
         date = self.get_expected_format_for_date(date)
-        self.date = datetime.strptime(date, "%Y-%m-%d-%H-%M")
+        self.date = datetime.strptime(date, "%Y-%m-%d-%H")
 
 
     @staticmethod
@@ -25,8 +25,8 @@ class Event:
             record (str)
 
         """
-        if len(record) > 16:
-            without_seconds = -3
+        if len(record) > 13:
+            without_seconds = -6
             record = record.replace(' ', '-')
             record = record.replace(':', '-')
             record = record[:without_seconds]

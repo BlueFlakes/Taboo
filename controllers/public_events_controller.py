@@ -96,7 +96,7 @@ def get_new_public_event_data():
     """
     list_of_questions = ['Public event title', 'Public event Desctription',
                          'Date, at least more than 24 hours from current time (' +
-                          str(datetime.now())[:16] + ').\nformat YYYY-MM-DD-HH-MM']
+                          str(datetime.now())[:13] + ').\nformat YYYY-MM-DD-HH']
     temp = []
 
     for i, question in enumerate(list_of_questions):
@@ -156,7 +156,7 @@ def validate_provided_date(date):
     valid_input = False
 
     try:
-        date = datetime.strptime(date, "%Y-%m-%d-%H-%M")
+        date = datetime.strptime(date, "%Y-%m-%d-%H")
 
     except ValueError:
         view.error_state_locker('Wrong date format')
